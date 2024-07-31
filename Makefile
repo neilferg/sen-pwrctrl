@@ -34,7 +34,7 @@ endif
 .PHONY: all build clean
 
 build all:
-	mkdir -p $(OBJECT_DIR); cd $(OBJECT_DIR); cmake $(CMAKE_OPTS) ../..
+	mkdir -p $(OBJECT_DIR); cd $(OBJECT_DIR); cmake $(CMAKE_OPTS) ../../src
 	make -C $(OBJECT_DIR)
 
 clean:
