@@ -1,0 +1,7 @@
+CTION!="add|change", GOTO="openocd_rules_end"
+SUBSYSTEM!="usb|tty|hidraw", GOTO="openocd_rules_end"
+ATTRS{product}=="*CMSIS-DAP*", MODE="666", GROUP="plugdev"
+LABEL="openocd_rules_end"
+
+#SUBSYSTEM=="usb", ATTR{idVendor}=="2e8a", ATTR{idProduct}=="000c", MODE:="666"
+
