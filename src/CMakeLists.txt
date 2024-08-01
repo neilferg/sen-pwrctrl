@@ -15,8 +15,14 @@ target_link_libraries(SenPwrCtrl pico_stdlib hardware_adc)
 pico_add_extra_outputs(SenPwrCtrl)
 
 # Enable USB serial
-pico_enable_stdio_usb(SenPwrCtrl 1)
-pico_enable_stdio_uart(SenPwrCtrl 0)
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    # use picoprobe's uart
+    pico_enable_stdio_usb(SenPwrCtrl 0)
+    pico_enable_stdio_uart(SenPwrCtrl 1)
+else()
+    pico_enable_stdio_usb(SenPwrCtrl 1)
+    pico_enable_stdio_uart(SenPwrCtrl 0)
+endif()
 
 FIND_PROGRAM(OBJCOPY arm-none-eabi-objcopy)
 
