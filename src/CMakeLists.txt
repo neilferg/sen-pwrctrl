@@ -13,7 +13,6 @@ add_executable(SenPwrCtrl
 
 target_link_libraries(SenPwrCtrl
     pico_stdlib
-    hardware_adc
     pico_i2c_slave
     hardware_i2c
 )
