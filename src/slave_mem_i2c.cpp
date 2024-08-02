@@ -37,7 +37,8 @@ static void i2c_slave_handler(i2c_inst_t *i2c, i2c_slave_event_t event);
 
 // Our handler is called from the I2C ISR, so it must complete quickly. Blocking calls /
 // printing to stdio may interfere with interrupt handling.
-void i2c_slave_handler(i2c_inst_t *i2c, i2c_slave_event_t event) {
+void i2c_slave_handler(i2c_inst_t *i2c, i2c_slave_event_t event)
+{
     //printf("irq\n");
 
     switch (event) {
@@ -65,7 +66,10 @@ void i2c_slave_handler(i2c_inst_t *i2c, i2c_slave_event_t event) {
     }
 }
 
-void setup_slave() {
+void setup_slave()
+{
+    // n.b both the automation & inventor breakout boards have physical pull up
+    // resistors fitted; ideally we should remove these... but things work ok anyway
     gpio_init(I2C_SLAVE_SDA_PIN);
     gpio_set_function(I2C_SLAVE_SDA_PIN, GPIO_FUNC_I2C);
     gpio_set_pulls(I2C_SLAVE_SDA_PIN, false, false);
