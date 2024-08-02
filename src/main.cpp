@@ -8,12 +8,10 @@
 
 const float conversion_factor = 3.3f / (1 << 12);
 
-/*
-    A simple application to blink the LED light, and print out the temperature.
-*/
-int main() {
-    stdio_init_all();
+void setup_slave();
 
+int doit()
+{
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
@@ -35,4 +33,22 @@ int main() {
 
         printf("Hello, world! The temperature is: %fc\n", temperature);
     }
+}
+
+int main()
+{
+    stdio_init_all();
+    printf("start\n");
+
+#if 0
+    doit();
+#else
+    setup_slave();
+
+    while (true)
+    {
+        tight_loop_contents();
+    }
+#endif
+    return 0;
 }

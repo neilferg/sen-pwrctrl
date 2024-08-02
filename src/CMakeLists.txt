@@ -6,10 +6,17 @@ project(SenPwrCtrl)
 
 pico_sdk_init()
 
-add_executable(SenPwrCtrl main.cpp)
+add_executable(SenPwrCtrl
+    main.cpp
+    slave_mem_i2c.cpp
+)
 
-# Link with the pico stdlib
-target_link_libraries(SenPwrCtrl pico_stdlib hardware_adc)
+target_link_libraries(SenPwrCtrl
+    pico_stdlib
+    hardware_adc
+    pico_i2c_slave
+    hardware_i2c
+)
 
 # Create map/bin/hex/uf2 files
 pico_add_extra_outputs(SenPwrCtrl)
