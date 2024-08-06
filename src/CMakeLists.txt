@@ -33,7 +33,7 @@ endif()
 FIND_PROGRAM(OBJCOPY arm-none-eabi-objcopy)
 
 ADD_CUSTOM_COMMAND(TARGET SenPwrCtrl POST_BUILD
-    COMMAND ${OBJCOPY} --only-keep-debug $<TARGET_FILE:SenPwrCtrl> ${CMAKE_BINARY_DIR}/SenPwrCtrl.debug
+    COMMAND ${OBJCOPY} --only-keep-debug $<TARGET_FILE:SenPwrCtrl> $<TARGET_FILE_DIR:SenPwrCtrl>/$<TARGET_FILE_BASE_NAME:SenPwrCtrl>.debug
     COMMAND ${OBJCOPY} --strip-debug $<TARGET_FILE:SenPwrCtrl>
-    COMMAND ${OBJCOPY} --add-gnu-debuglink=SenPwrCtrl.debug $<TARGET_FILE:SenPwrCtrl>
+    COMMAND ${OBJCOPY} --add-gnu-debuglink=$<TARGET_FILE_BASE_NAME:SenPwrCtrl>.debug $<TARGET_FILE:SenPwrCtrl>
 )
