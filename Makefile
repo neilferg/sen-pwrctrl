@@ -1,3 +1,19 @@
+# Variables affecting build:
+#     CONFIG_TARGET        - pwrctrl_arm
+#     CONFIG_DEBUG_BUILD   - =y => Debug build else Release
+#     BUILD_DIR=<path>     - where to put compiled binaries
+
+#---------------------------------------------------------
+THIS_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+TOP_DIR  ?= $(abspath $(THIS_DIR))
+
+# IN: CONFIG_TARGET, [CONFIG_DEBUG_BUILD]
+CONFIG_TARGET ?= pwrctrl_arm
+include $(TOP_DIR)/mk/tgt_vars.mk
+# OUT: PRODUCT, TARGET, MODE, [CONFIG_HOST_BUILD], [CONFIG_DEBUG_BUILD]
+
+BUILD_DIR ?= $(TOP_DIR)/Binaries
+
 
 # PICO_SDK_PATH=/home/dev/pico/pico-sdk
 # PICO_EXTRAS_PATH=/home/dev/pico/pico-extras
@@ -18,8 +34,6 @@ export PICO_EXAMPLES_PATH
 
 #------------------------------------
 
-MODE := Debug
-BUILD_DIR := Binaries
 OBJECT_DIR := $(BUILD_DIR)/$(MODE)
 TARGET_BINARY := SenPwrCtrl.elf
 
