@@ -9,12 +9,19 @@ pico_sdk_init()
 add_executable(SenPwrCtrl
     main.cpp
     slave_mem_i2c.cpp
+    blink.cpp
+)
+
+# Create C header file with the name <pio program>.pio.h
+pico_generate_pio_header(SenPwrCtrl  
+    ${CMAKE_CURRENT_LIST_DIR}/blink.pio
 )
 
 target_link_libraries(SenPwrCtrl
     pico_stdlib
     pico_i2c_slave
     hardware_i2c
+    hardware_pio
 )
 
 # Create map/bin/hex/uf2 files
