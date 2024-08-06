@@ -1,3 +1,8 @@
-elf="Binaries/Debug/SenPwrCtrl.elf"
+f="$1"
 
-openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 1000" -c "program ${elf} verify reset exit"
+if ! readelf -h "${f}" > /dev/null; then
+    echo "ERROR: Must supply an elf file"
+    exit 1
+fi
+
+openocd -f interface/cmsis-dap.cfg -f target/rp2040.cfg -c "adapter speed 1000" -c "program ${f} verify reset exit"
